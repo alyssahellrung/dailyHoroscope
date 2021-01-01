@@ -28,34 +28,39 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-  function searchHoroscopes(sign) {
+  // function searchHoroscopes(sign) {
 
-    // Querying the horoscope api for the selected sign
-    var queryURL = "https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=" + sign + "&day=today";
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
+    // Copied code from RapidAPI
+    const settings={
+      "async": true,
+	    "crossDomain": true,
+	    "url": "https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=aquarius&day=today",
+	    "method": "GET",
+	    "headers": {
+		    "x-rapidapi-key": "edd0d01657msh880dfc12351f924p12b052jsncd7f1ad691a8",
+		    "x-rapidapi-host": "sameer-kumar-aztro-v1.p.rapidapi.com"
+	  }
+    };
+    
+    $.ajax(settings).done(function (response) {
+	  console.log(response);
+    });
+  // }
 
-      // Printing the entire object to console
-      console.log(response);
+    // var queryURL = "https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=" + sign + "&day=today";
 
-      // Constructing HTML containing the horoscope information
-      // var artistName = $("<h1>").text(response.name);
-      // var artistURL = $("<a>").attr("href", response.url).append(artistName);
-      // var artistImage = $("<img>").attr("src", response.thumb_url);
-      // var trackerCount = $("<h2>").text(response.tracker_count + " fans tracking this artist");
-      // var upcomingEvents = $("<h2>").text(response.upcoming_event_count + " upcoming events");
-      // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
+      
+
+      
 
       // var enteredSign = $("<h1>").text(????);
-      // var todaysHoroscope = $("<h3>").text(response.description);
+      var todaysHoroscope = $("<h3>").text(response.description);
 
       // Empty the contents of the horoscope-div, append the new horoscope content
-      // $("#horoscope-div").empty();
+      $("#horoscope-div").empty();
       // $("#horoscope-div").append(????);
-    });
-  }
+  //   });
+  // }
 
   // Event handler for user clicking the select-sign button
   $("#select-sign").on("click", function(event) {
